@@ -6,6 +6,7 @@
  * @src: param pointer to a char
  * Return: return value of dest
  */
+
 char *_strcat(char *dest, char *src)
 {
 	int i;
@@ -18,6 +19,7 @@ char *_strcat(char *dest, char *src)
 	{
 		i++;
 	}
+
 	while (src[j] != '\0')
 	{
 		dest[i] = src[j];
@@ -26,6 +28,5 @@ char *_strcat(char *dest, char *src)
 	}
 
 	dest[i] = '\0';
-	return (dest)
+	return (dest);
 }
-
