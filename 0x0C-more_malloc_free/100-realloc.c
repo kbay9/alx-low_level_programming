@@ -1,51 +1,49 @@
 #include "main.h"
-#include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size) {
-    if (ptr == NULL) {
-        return malloc(new_size);
-    }
+/**
+ * _realloc - reallocates a memory block by using malloc and free
+ * @ptr: poointer to the memory previoously allocated by malloc
+ * @old_size: size of the allocated memory for ptr
+ * @new_size: new size of the new memory block
+ * Return: pointer to new allocated memory block
+ */
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
+{
+	char *ptr1;
+	char *old_ptr;
+	unsigned int i;
 
-    if (new_size == 0) {
-        free(ptr);
-        return NULL;
-    }
+	if (new_size == old_size)
+		return (ptr);
 
-    void *new_ptr = malloc(new_size);
-    if (new_ptr == NULL) {
-        return NULL; // Memory allocation failed
-    }
+	if (new_size == 0 && ptr)
+	{
+		free(ptr);
+		return (NULL);
+	}
 
-    // Copy the contents from the old memory block to the new block
-    unsigned int copy_size = (old_size < new_size) ? old_size : new_size;
-    memcpy(new_ptr, ptr, copy_size);
+	if (!ptr)
+		return (malloc(new_size));
 
-    // Free the old memory block
-    free(ptr);
+	ptr1 = malloc(new_size);
+	if (!ptr1)
+		return (NULL);
 
-    return new_ptr;
-}
+	old_ptr = ptr;
 
-int main() {
-    int *arr = malloc(5 * sizeof(int)); // Allocate memory for 5 integers
-    for (int i = 0; i < 5; i++) {
-        arr[i] = i * i;
-        printf("%d ", arr[i]);
-    }
-    printf("\n");
+	if (new_size < old_size)
+	{
+		for (i = 0; i < new_size; i++)
+			ptr1[i] = old_ptr[i];
+	}
 
-    // Reallocate memory for 10 integers
-    arr = _realloc(arr, 5 * sizeof(int), 10 * sizeof(int));
-    for (int i = 5; i < 10; i++) {
-        arr[i] = i * i;
-        printf("%d ", arr[i]);
-    }
-    printf("\n");
+	if (new_size > old_size)
+	{
+		for (i = 0; i < old_size; i++)
+			ptr1[i] = old_ptr[i];
+	}
 
-    // Deallocate the memory
-    free(arr);
-
-    return 0;
+	free(ptr);
+	return (ptr1);
 }
