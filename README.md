@@ -1,75 +1,47 @@
-# C - Pointers, arrays and strings
+# C - Variadic functions
 
-In this project, I learned about what and how to use pointers and arrays and
-the differences between the two as well as how to use and manipulate strings in C.
+In this project, I learned about using variadic functions with the `va_start`,
+`va_arg`, and `va_end` macros as well as why and how to use the `const` type qualifier in C.
 
 ## Header File :file_folder:
 
-* [main.h](main.h): Header file containing prototypes for all functions written in the project.
+* [variadic_functions.h](./variadic_functions.h): Header file containing definitions and
+prototypes for all types and functions written in the project.
 
-| File              | Prototype                               |
-| ----------------- | --------------------------------------- |
-| `0-reset_to_98.c` | `void reset_to_98(int *n);`             |
-| `1-swap.c`        | `void swap_int(int *a, int *b);`        |
-| `2-strlen.c`      | `int _strlen(char *s);`                 |
-| `3-puts.c`        | `void _puts(char *str);`                |
-| `4-print_rev.c`   | `void print_rev(char *s);`              |
-| `5-rev_string.c`  | `void rev_string(char *s);`             |
-| `6-puts2.c`       | `void puts2(char *str);`                |
-| `7-puts_half.c`   | `void puts_half(char *str);`            |
-| `8-print_array.c` | `void print_array(int *a, int n);`      |
-| `9-strcpy.c`      | `char *_strcpy(char *dest, char *src);` |
-| `100-atoi.c`      | `int _atoi(char *s);`                   |
+| File                     | Definition/Prototype                                                    |
+| ------------------------ | ----------------------------------------------------------------------- |
+| `0-sum_them_all.c`       | `int sum_them_all(const unsigned int n, ...);`                          |
+| `1-print_numbers.c`      | `void print_numbers(const char *separator, const unsigned int n, ...);` |
+| `2-print_strings.c`      | `void print_strings(const char *separator, const unsigned int n, ...);` |
+| `3-print_all.c`          | `void print_all(const char * const format, ...);`                       |                                                     
 
 ## Tasks :page_with_curl:
 
-* **0. 98 Battery st.**
-  * [0-reset_to_98.c](./0-reset_to_98.c): C function that takes a pointer to an
-  `int` as a parameter and updates the value it points to to `98`.
+* **0. Beauty is variable, ugliness is constant**
+  * [0-sum_them_all.c](./0-sum_them_all.c): C function that returns the sum of
+  all its paramters.
+    * If the parameter `n == 0`, the function returns `0`.
 
-* **1. Don't swap horses in crossing a stream**
-  * [1-swap.c](./1-swap.c): C function that swaps the value of two integers.
-
-* **2. This report, by its very length, defends itself against the risk of being read**
-  * [2-strlen.c](./2-strlen.c): C function that returns the length of a string.
-
-* **3. I do not fear computers. I fear the lack of them**
-  * [3-puts.c](./3-puts.c): C function that prints a string, followed by a new line,
-  to `stdout`.
-
-* **4. I can only go one way. I've not got a reverse gear**
-  * [4-print_rev.c](./4-print_rev.c): C function that prints a string, in reverse,
+* **1. To be is to be the value of a variable**
+  * [1-print_numbers.c](./1-print_numbers.c): C function that prints numbers,
   followed by a new line.
+    * The paramter `separator` is the string to be printed between numbers.
+    * The paramter `n` is the number of integers passed to the function.
+    * If `separator` is `NULL`, it is not printed.
 
-* **5. A good engineer thinks in reverse and asks himself about the stylistic consequences of the components and systems he proposes**
-  * [5-rev_string.c](./5-rev_string.c): C function that reverses a string.
-
-* **6. Half the lies they tell about me aren't true**
-  * [6-puts2.c](./6-puts2.c): C function that prints every other character of a string,
+* **2. One woman's constant is another woman's variable**
+  * [2-print_strings.c](./2-print_strings.c): C function that prints strings,
   followed by a new line.
+    * The parameter `separator` is the string to be printed between the strings.
+    * The parameter `n` is the number of strings passed to the function.
+    * If `separator` is `NULL`, it is not printed.
+    * If one of the strings is `NULL`, the function prints `(nil)` instead.
 
-* **7. Winning is only half of it. Having fun is the other half**
-  * [7-puts_half.c](./7-puts_half.c): C function that prints the second half of a string,
-  followed by a new line.
-
-* **8. Arrays are not pointers**
-  * [8-print_array.c](./8-print_array.c): C function that prints an input `n` elements
-  of an array of integers, followed by a new line.
-    * Numbers are separated by a comma followed by a space.
-    * Numbers are displayed in the same order as they are stored in the array.
-
-* **9. strcpy**
-  * [9-strcpy.c](./9-strcpy.c): C function that copies the string pointed to by
-  `src`, including the terminating null byte (`\0`), to the buffer pointed to by `dest`.
-    * Returns the pointer to `dest`.
-
-* **10. Great leaders are willing to sacrifice the numbers to save the people. Poor leaders sacrifice the people to save the numbers**
-  * [100-atoi.c](./100-atoi.c): C function that converts a string to an integer
-  without using `long`, new variable arrays, or hard-coded special values, as follows:
-    * The number in the string can be preceded by an infinite number of characters.
-    * Takes into account all `+` and `-` signs before the number.
-    * If there are no numbers in the string, the function returns `0`.
-
-* **11. Don't hate the hacker, hate the code**
-  * [101-keygen.c](./101-keygen.c): C program that generates random valid passwords
-  for the program [101-crackme](https://github.com/holbertonschool/0x04.c).
+* **3. To be is a to be the value of a variable**
+  * [3-print_all.c](./3-print_all.c): C function that prints anything.
+    * Usage: `print_all("ceis", 'H', 0, "lberton");`
+    * The paramter `format` is a list of types of arguments passed to the function
+    (`c`:`char`, `i`:`int`, `f`:`float`, `s`:`char *` (if the string is
+    `NULL`, `(nil)` is printed instead))
+    * Any other character is ignored.
+    * A new line is printed at the end of the function.
